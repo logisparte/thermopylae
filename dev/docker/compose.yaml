@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  thermopylae-dev:
+    build:
+      dockerfile: $PWD/dev/docker/Dockerfile
+      context: $PWD
+    user: $HOST_UID:$HOST_GID
+    environment:
+      IS_IN_DOCKER: true
+    volumes:
+      - $PWD/dev/docker/host/group:/etc/group:ro
+      - $PWD/dev/docker/host/passwd:/etc/passwd:ro
+      - $PWD:$PWD
+    working_dir: $PWD

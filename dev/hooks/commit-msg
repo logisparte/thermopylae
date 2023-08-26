@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+./dev/task.sh commit_msg "$@"

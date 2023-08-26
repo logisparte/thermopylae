@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# Color codes: https://tired-fox.github.io/256-color-table/
+
+colorize() {
+  TEXT="$1"
+  COLOR="$2"
+
+  WHITE_CODE="15"
+  GRAY_CODE="8"
+  BLACK_CODE="0"
+  RED_CODE="9"
+  ORANGE_CODE="208"
+  YELLOW_CODE="11"
+  GREEN_CODE="10"
+  CYAN_CODE="14"
+  BLUE_CODE="12"
+  PURPLE_CODE="5"
+
+  if [ -z "$TEXT" ]; then
+    return
+  fi
+
+  if [ "$COLOR" = "bold_white" ]; then
+    COLOR_MODIFIER="1"
+
+  else
+    COLOR_MODIFIER="5"
+  fi
+
+  case "$COLOR" in
+    "" | "white" | "bold_white")
+      COLOR_CODE="$WHITE_CODE"
+      ;;
+
+    "gray")
+      COLOR_CODE="$GRAY_CODE"
+      ;;
+
+    "black")
+      COLOR_CODE="$BLACK_CODE"
+      ;;
+
+    "red")
+      COLOR_CODE="$RED_CODE"
+      ;;
+
+    "orange")
+      COLOR_CODE="$ORANGE_CODE"
+      ;;
+
+    "yellow")
+      COLOR_CODE="$YELLOW_CODE"
+      ;;
+
+    "green")
+      COLOR_CODE="$GREEN_CODE"
+      ;;
+
+    "cyan")
+      COLOR_CODE="$CYAN_CODE"
+      ;;
+
+    "blue")
+      COLOR_CODE="$BLUE_CODE"
+      ;;
+
+    "purple")
+      COLOR_CODE="$PURPLE_CODE"
+      ;;
+
+    [0-9] | [1-9][0-9] | 1[0-9][0-9] | [2][0-5][0-5])
+      COLOR_CODE="$COLOR"
+      ;;
+
+    *)
+      printf "Invalid color: %s" "$COLOR" >&2
+      return 1
+      ;;
+  esac
+
+  printf "\033[38;${COLOR_MODIFIER};${COLOR_CODE}m%s\033[0m" "$TEXT"
+}
