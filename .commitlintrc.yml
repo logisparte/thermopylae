@@ -39,5 +39,5 @@ rules:
     - - M # Major          => Incompatible change
       - m # Minor          => Backward compatible feature
       - p # Patch          => Backward compatible bug fix
-      - r # Refactor       => Backward compatible improvement
+      - r # Revision       => Backward compatible improvement
       - x # Miscellaneous  => Neutral change (documentation, ci/cd, dev dependencies, etc.)

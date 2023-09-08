@@ -10,11 +10,12 @@ log() {
     MESSAGE="$1"
     COLOR="$2"
 
+    SCRIPT_NAME="$(basename "$0" | cut -d "." -f 1)"
     if [ -n "$COLOR" ]; then
-      printf "%s\n" "$(colorize "$MESSAGE" "$COLOR")"
+      printf "%s\n" "$(colorize "[$SCRIPT_NAME] $MESSAGE" "$COLOR")"
 
     else
-      printf "%s\n" "$MESSAGE"
+      printf "%s\n" "[$SCRIPT_NAME] $MESSAGE"
     fi
   }
 

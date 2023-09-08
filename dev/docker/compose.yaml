@@ -1,15 +1,14 @@
-version: "3.9"
-
 services:
-  thermopylae-dev:
+  dev-image:
     build:
-      dockerfile: $PWD/dev/docker/Dockerfile
+      dockerfile: $DOCKERFILE
       context: $PWD
-    user: $HOST_UID:$HOST_GID
+    container_name: $COMPOSE_PROJECT_NAME-dev-container
     environment:
-      IS_IN_DOCKER: true
+      CI:
+    user: $HOST_UID:$HOST_GID
     volumes:
-      - $PWD/dev/docker/host/group:/etc/group:ro
-      - $PWD/dev/docker/host/passwd:/etc/passwd:ro
+      - $DOCKER_GROUP_FILE:/etc/group:ro
+      - $DOCKER_PASSWD_FILE:/etc/passwd:ro
       - $PWD:$PWD
     working_dir: $PWD

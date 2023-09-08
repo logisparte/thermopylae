@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export DEV_DIRECTORY="$PWD/dev"
+export HELPER_DIRECTORY="$DEV_DIRECTORY/helpers"
+export HOOK_DIRECTORY="$DEV_DIRECTORY/hooks"
+export TASK_DIRECTORY="$DEV_DIRECTORY/tasks"
+
+export DOCKER_DIRECTORY="$DEV_DIRECTORY/docker"
+export DOCKERFILE="$DOCKER_DIRECTORY/Dockerfile"
+export DOCKER_COMPOSE_FILE="$DOCKER_DIRECTORY/compose.yaml"
+export DOCKER_HOST_DIRECTORY="$DOCKER_DIRECTORY/host"
+export DOCKER_COMPOSE_ENV_FILE="$DOCKER_HOST_DIRECTORY/compose.env"
+
+if [ -f "$PWD/.env" ]; then
+  . "$PWD/.env"
+fi
